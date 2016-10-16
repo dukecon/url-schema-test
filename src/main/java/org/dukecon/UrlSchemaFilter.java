@@ -20,15 +20,19 @@ public class UrlSchemaFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         System.out.println("called filter");
-        System.out.println(request.getRequestURL());
-        System.out.println("request parameter: " + request.getQueryString());
+        servletResponse.getWriter().write("<html>");
+        servletResponse.getWriter().write("<body>");
+        servletResponse.getWriter().write(request.getRequestURL().toString() + "<br/>");
+        servletResponse.getWriter().write("request parameter: " + request.getQueryString() + "<br/>");
+        servletResponse.getWriter().write("Header: " + "<br/>");
         Enumeration<String> headerNames = request.getHeaderNames();
-        while(headerNames.hasMoreElements()) {
+        while (headerNames.hasMoreElements()) {
             String key = headerNames.nextElement();
             String value = request.getHeader(key);
-            System.out.println(key + ": " + value);
+            servletResponse.getWriter().write(key + ": " + value + "<br/>");
         }
-        filterChain.doFilter(servletRequest, servletResponse);
+        servletResponse.getWriter().write("</body>");
+        servletResponse.getWriter().write("</html>");
     }
 
     @Override

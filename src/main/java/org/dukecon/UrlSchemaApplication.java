@@ -9,30 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UrlSchemaApplication {
 
-	@RequestMapping("/")
-	public String root() {
-		return "root";
-	}
+    @RequestMapping("/")
+    public void root() {
+    }
 
-
-	@RequestMapping("/index.html")
-	public String index() {
-		return "index.html";
-	}
-
-
-	@RequestMapping("/public/index.html")
-	public String publicIndex() {
-		return "public/index.html";
-	}
-
-
-	@RequestMapping("/rest")
-	public String rest() {
-		return "rest/conferences/...";
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(UrlSchemaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(UrlSchemaApplication.class, args);
+    }
 }
